@@ -1,0 +1,9 @@
+{
+   "content_scripts": [ {
+      "js": [ "index.js" ],
+      "matches": [ "https://*.reddit.com/*" ]
+   } ],
+   "manifest_version": 3,
+   "name": "redditkeybinds",
+   "version": "1.1"
+}
