@@ -26,16 +26,14 @@ document.addEventListener(
         .querySelector("gallery-carousel")
         ?.shadowRoot?.querySelector('[slot="prevButton"]')
         ?.children[0] as HTMLButtonElement;
-
-      prevButton.click();
+      if(prevButton)prevButton.click();
     }
     if (keyName == "d") {
       const nextButton = focusedElement
         .querySelector("gallery-carousel")
         ?.shadowRoot?.querySelector('[slot="nextButton"]')
         ?.children[0] as HTMLButtonElement;
-
-      nextButton.click();
+      if(nextButton) nextButton.click();
     }
     if (keyName == "x") {
       const likeButton = focusedElement.children[0].shadowRoot?.querySelector(
