@@ -1,15 +1,15 @@
 const exports = [];
 
-const feed = document.querySelector("shreddit-feed");
 let focusedElement: Element = document.querySelector("article")!;
 
 document.addEventListener(
   "keydown",
   (event) => {
     var keyName = event.key;
-    //var keyCode = event.code;
 
     console.log("pressed ", keyName);
+
+    if(!focusedElement) focusedElement = document.querySelector("article")!;
 
     if (keyName == "s") {
       focusedElement = focusedElement!.nextElementSibling!.nextElementSibling!;
