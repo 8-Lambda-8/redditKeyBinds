@@ -35,13 +35,13 @@ document.addEventListener(
         ?.children[0] as HTMLButtonElement;
       if(nextButton) nextButton.click();
     }
-    if (keyName == "x") {
+    if (keyName == "c") {
       const likeButton = focusedElement.children[0].shadowRoot?.querySelector(
         "[upvote]"
       ) as HTMLButtonElement;
       likeButton.click();
     }
-    if (keyName == "y") {
+    if (keyName == "x") {
       const likeButton = focusedElement.children[0].shadowRoot?.querySelector(
         "[downvote]"
       ) as HTMLButtonElement;
