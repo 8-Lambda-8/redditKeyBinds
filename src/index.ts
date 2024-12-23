@@ -2,10 +2,19 @@ const exports = [];
 
 let focusedElement: Element = document.querySelector("article")!;
 
+const pressed: string[] = [];
+
 document.addEventListener(
   "keydown",
   (event) => {
     var keyName = event.key;
+
+    if (pressed.indexOf(keyName) > 0) return;
+    pressed.push(keyName);
+    setTimeout(() => {
+      const index = pressed.indexOf(keyName);
+      if (index > 0) pressed.splice(index, 1);
+    }, 100);
 
     console.log("pressed ", keyName);
 
