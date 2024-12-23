@@ -9,31 +9,31 @@ document.addEventListener(
 
     console.log("pressed ", keyName);
 
-    if(!focusedElement) focusedElement = document.querySelector("article")!;
+    if (!focusedElement) focusedElement = document.querySelector("article")!;
 
     if (keyName == "s") {
       focusedElement = focusedElement!.nextElementSibling!.nextElementSibling!;
-      focusedElement.scrollIntoView({block:"center"});
-      focusedElement.scroll(0,10)
+      focusedElement.scrollIntoView({ block: "center" });
+      focusedElement.scroll(0, 10);
     }
     if (keyName == "w") {
       focusedElement =
         focusedElement!.previousElementSibling!.previousElementSibling!;
-      focusedElement.scrollIntoView({block:"center"});
+      focusedElement.scrollIntoView({ block: "center" });
     }
     if (keyName == "a") {
       const prevButton = focusedElement
         .querySelector("gallery-carousel")
         ?.shadowRoot?.querySelector('[slot="prevButton"]')
         ?.children[0] as HTMLButtonElement;
-      if(prevButton)prevButton.click();
+      if (prevButton) prevButton.click();
     }
     if (keyName == "d") {
       const nextButton = focusedElement
         .querySelector("gallery-carousel")
         ?.shadowRoot?.querySelector('[slot="nextButton"]')
         ?.children[0] as HTMLButtonElement;
-      if(nextButton) nextButton.click();
+      if (nextButton) nextButton.click();
     }
     if (keyName == "c") {
       const likeButton = focusedElement.children[0].shadowRoot?.querySelector(
