@@ -5,7 +5,8 @@
   "main": "lib/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc",
+    "build": "rm lib/* && tsc && npm run pack",
+    "pack": "cp src/manifest.json lib/. && cp redditKeyBinds.crx lib/. && zip lib/package.zip lib/*",
     "lint": "tslint -c tslint.json src/**/*.ts",
     "prepublish": "npm run build"
   },
