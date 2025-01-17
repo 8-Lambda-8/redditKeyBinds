@@ -13,12 +13,19 @@ document.addEventListener(
 
     if (keyName == "s") {
       focusedElement = focusedElement!.nextElementSibling!.nextElementSibling!;
+      while (focusedElement.nodeName != "ARTICLE")
+        focusedElement =
+          focusedElement!.nextElementSibling!.nextElementSibling!;
+
       focusedElement.scrollIntoView({ block: "center" });
       focusedElement.scroll(0, 10);
     }
     if (keyName == "w") {
       focusedElement =
         focusedElement!.previousElementSibling!.previousElementSibling!;
+      while (focusedElement.nodeName != "ARTICLE")
+        focusedElement =
+          focusedElement!.nextElementSibling!.nextElementSibling!;
       focusedElement.scrollIntoView({ block: "center" });
     }
     if (keyName == "a") {
