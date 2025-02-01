@@ -16,10 +16,16 @@ document.addEventListener(
 
     if (keyName == "s") {
       nextElement = focusedElement!.nextElementSibling!.nextElementSibling!;
+
+      if (nextElement == null) nextElement = focusedElement.parentElement!;
       let i = 0;
       while (nextElement.nodeName != "ARTICLE" && i < maxSearchLoop) {
         i++;
         nextElement = nextElement!.nextElementSibling!;
+
+        if (nextElement.nodeName == "FACEPLATE-BATCH") {
+          nextElement = nextElement.querySelector("article")!;
+        }
       }
 
       if (nextElement.nodeName == "ARTICLE") focusedElement = nextElement;
