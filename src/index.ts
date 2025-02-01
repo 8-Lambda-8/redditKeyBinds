@@ -34,12 +34,21 @@ document.addEventListener(
       focusedElement.scroll(0, 10);
     }
     if (keyName == "w") {
-      nextElement =
-        focusedElement!.previousElementSibling!.previousElementSibling!;
+      nextElement = focusedElement!.previousElementSibling!;
+      if (nextElement == null) nextElement = focusedElement.parentElement!;
+      else nextElement = nextElement.previousElementSibling!;
+
+      console.log(nextElement);
+
       let i = 0;
       while (nextElement.nodeName != "ARTICLE" && i < maxSearchLoop) {
         i++;
         nextElement = nextElement!.previousElementSibling!;
+
+        console.log(nextElement.nodeName, nextElement);
+        if (nextElement.nodeName == "FACEPLATE-BATCH") {
+          nextElement = nextElement.querySelector("article:last-of-type")!;
+        }
       }
 
       if (nextElement.nodeName == "ARTICLE") focusedElement = nextElement;
