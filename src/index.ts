@@ -2,6 +2,9 @@ const exports = [];
 
 let focusedElement: Element = document.querySelector("article")!;
 
+let nextElement: Element;
+const maxSearchLoop = 6;
+
 document.addEventListener(
   "keydown",
   (event) => {
@@ -12,20 +15,28 @@ document.addEventListener(
     if (!focusedElement) focusedElement = document.querySelector("article")!;
 
     if (keyName == "s") {
-      focusedElement = focusedElement!.nextElementSibling!.nextElementSibling!;
-      while (focusedElement.nodeName != "ARTICLE")
-        focusedElement =
-          focusedElement!.nextElementSibling!.nextElementSibling!;
+      nextElement = focusedElement!.nextElementSibling!.nextElementSibling!;
+      let i = 0;
+      while (nextElement.nodeName != "ARTICLE" && i < maxSearchLoop) {
+        i++;
+        nextElement = nextElement!.nextElementSibling!;
+      }
+
+      if (nextElement.nodeName == "ARTICLE") focusedElement = nextElement;
 
       focusedElement.scrollIntoView({ block: "center" });
       focusedElement.scroll(0, 10);
     }
     if (keyName == "w") {
-      focusedElement =
+      nextElement =
         focusedElement!.previousElementSibling!.previousElementSibling!;
-      while (focusedElement.nodeName != "ARTICLE")
-        focusedElement =
-          focusedElement!.nextElementSibling!.nextElementSibling!;
+      let i = 0;
+      while (nextElement.nodeName != "ARTICLE" && i < maxSearchLoop) {
+        i++;
+        nextElement = nextElement!.previousElementSibling!;
+      }
+
+      if (nextElement.nodeName == "ARTICLE") focusedElement = nextElement;
       focusedElement.scrollIntoView({ block: "center" });
     }
     if (keyName == "a") {
