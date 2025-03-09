@@ -32,20 +32,24 @@ document.addEventListener(
 
       focusedElement.scrollIntoView({ block: "center" });
       focusedElement.scroll(0, 10);
+
+      const x = focusedElement.querySelector(
+        "shreddit-async-loader > shreddit-embed"
+      ) as Element;
+      if (x != null && !x.shadowRoot?.children.length) {
+        x.shadowRoot!.innerHTML = x.getAttribute("html") ?? "";
+      }
     }
     if (keyName == "w") {
       nextElement = focusedElement!.previousElementSibling!;
       if (nextElement == null) nextElement = focusedElement.parentElement!;
       else nextElement = nextElement.previousElementSibling!;
 
-      console.log(nextElement);
-
       let i = 0;
       while (nextElement.nodeName != "ARTICLE" && i < maxSearchLoop) {
         i++;
         nextElement = nextElement!.previousElementSibling!;
 
-        console.log(nextElement.nodeName, nextElement);
         if (nextElement.nodeName == "FACEPLATE-BATCH") {
           nextElement = nextElement.querySelector("article:last-of-type")!;
         }
