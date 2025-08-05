@@ -59,18 +59,41 @@ document.addEventListener(
       focusedElement.scrollIntoView({ block: "center" });
     }
     if (keyName == "a") {
-      const prevButton = focusedElement
+      const prevButton = (
+        document.querySelector("#shreddit-media-lightbox") ?? focusedElement
+      )
         .querySelector("gallery-carousel")
         ?.shadowRoot?.querySelector('[slot="prevButton"]')
         ?.children[0] as HTMLButtonElement;
       if (prevButton) prevButton.click();
     }
     if (keyName == "d") {
-      const nextButton = focusedElement
+      const nextButton = (
+        document.querySelector("#shreddit-media-lightbox") ?? focusedElement
+      )
         .querySelector("gallery-carousel")
         ?.shadowRoot?.querySelector('[slot="nextButton"]')
         ?.children[0] as HTMLButtonElement;
       if (nextButton) nextButton.click();
+    }
+    if (keyName == "q") {
+      let img = null as HTMLImageElement | null;
+      if (focusedElement.querySelector("gallery-carousel"))
+        img = focusedElement.querySelector(
+          "gallery-carousel>ul>li[style*='visibility: visible;']"
+        )!;
+      else
+        img = focusedElement.children[0].querySelector(
+          "img.preview-img"
+        ) as HTMLImageElement;
+
+      if (img) img.click();
+      else
+        (
+          document.querySelector(
+            "#shreddit-media-lightbox > div > button"
+          ) as HTMLButtonElement
+        ).click();
     }
     if (keyName == "c") {
       const likeButton = focusedElement.children[0].shadowRoot?.querySelector(
